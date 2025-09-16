@@ -18,9 +18,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from shop_app.views import (
-    index, register, cart, dashboard, order_complete, place_order,
+    category_products, index, register, cart, dashboard, order_complete, place_order,
     product_detail, search_result, store, signin
 )
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -28,10 +30,14 @@ urlpatterns = [
     path('register/', register, name='register'),
     path('signin/', signin, name='signin'),
     path('store/', store, name='store'),
-    path('product-detail/', product_detail, name='product_detail'),
     path('cart/', cart, name='cart'),
     path('place-order/', place_order, name='place_order'),
     path('order-complete/', order_complete, name='order_complete'),
     path('dashboard/', dashboard, name='dashboard'),
     path('search-result/', search_result, name='search_result'),
+    path('product/<int:id>/', product_detail, name='product_detail'), 
+    path('category/<int:id>/', category_products, name='category_products'),
 ]
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+

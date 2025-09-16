@@ -83,21 +83,17 @@ $(document).ready(function() {
         </a>
     </div>
     <div class="col-lg col-sm col-md col-6 flex-grow-0">
-        <div class="category-wrap dropdown d-inline-block float-right">
-            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown"> 
-                <i class="fa fa-bars"></i> All category 
-            </button>
-            <div class="dropdown-menu">
-                <!-- Categories could link to store filtered views if implemented -->
-                <a class="dropdown-item" href="{% url 'store' %}">Machinery / Mechanical Parts / Tools</a>
-                <a class="dropdown-item" href="{% url 'store' %}">Consumer Electronics / Home Appliances</a>
-                <a class="dropdown-item" href="{% url 'store' %}">Auto / Transportation</a>
-                <a class="dropdown-item" href="{% url 'store' %}">Apparel / Textiles / Timepieces</a>
-                <a class="dropdown-item" href="{% url 'store' %}">Home & Garden / Construction / Lights</a>
-                <a class="dropdown-item" href="{% url 'store' %}">Beauty & Personal Care / Health</a> 
-            </div>
-        </div>
-    </div>
+                    <div class="category-wrap dropdown d-inline-block float-right">
+                        <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                            <i class="fa fa-bars"></i> All category
+                        </button>
+                        <div class="dropdown-menu">
+                            {% for category in categories %}
+                                <a class="dropdown-item" href="{% url 'category_products' category.id %}">{{ category.category_name }}</a>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
     <a href="{% url 'store' %}" class="btn btn-outline-primary">Store</a>
     <div class="col-lg col-md-6 col-sm-12 col">
         <form action="{% url 'search_result' %}" method="GET" class="search">
@@ -150,3 +146,17 @@ $(document).ready(function() {
 
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
